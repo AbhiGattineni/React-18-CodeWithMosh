@@ -1,7 +1,8 @@
-import ListGroup from './components/ListGroup';
+import ListGroup from "./components/ListGroup";
+import "./App.css";
 
 function App() {
-  return <ListGroup/>
+  return <ListGroup />;
 }
 
 export default App;
