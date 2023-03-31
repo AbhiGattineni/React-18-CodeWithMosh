@@ -7,13 +7,17 @@ import Cart from "./Cart";
 import { useState } from "react";
 
 function App() {
-  const [cartItems, setCartItems] = useState(["Item 1", "Item 2"]);
-  return (
-    <>
-      <Navbar cartItemsCount={cartItems.length} />
-      <Cart cartItems={cartItems} onClear={() => setCartItems([])} />
-    </>
-  );
+  const [game, setGame] = useState({
+    id: 1,
+    player: {
+      name: "John",
+    },
+  });
+
+  const onChange = () => {
+    setGame({ ...game, player: { name: "reddy" } });
+  };
+  return <button onClick={onChange}>Change Name{game.player.name}</button>;
 }
 
 export default App;
