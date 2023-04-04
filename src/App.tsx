@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Cart from "./Cart";
 import { useState } from "react";
 import ExpandableText from "./components/ExpandableText/ExpandableText";
+import Form from "./components/Form/Form";
 
 function App() {
   const [game, setGame] = useState({
@@ -18,7 +19,7 @@ function App() {
   const onChange = () => {
     setGame({ ...game, player: { name: "reddy" } });
   };
-  return <ExpandableText>Hello World</ExpandableText>;
+  return <Form />;
 }
 
 export default App;
