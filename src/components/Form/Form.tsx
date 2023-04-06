@@ -8,7 +8,11 @@ const Form = () => {
 
   const person = { name: "", age: 0 };
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   //   const handleSubmit = (e: FormEvent) => {
   //     e.preventDefault();
@@ -28,11 +32,15 @@ const Form = () => {
           Name
         </label>
         <input
-          {...register("name")}
+          {...(register("name"), { required: true, minLength: 3 })}
           id="name"
           type="text"
           className="form-control"
         />
+        {errors.name?.type === "required" && <p>The name field is required.</p>}
+        {errors.name?.type === "minLength" && (
+          <p>The name field should be 3 characters.</p>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
