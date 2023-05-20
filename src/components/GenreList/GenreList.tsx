@@ -7,6 +7,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../../hooks/useGenres";
+import noImage from "../../assets/no-image-placeholder-6f3882e0.webp";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -27,7 +28,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
             <Image
               boxSize="32px"
               borderRadius={8}
-              src={genre.image_background}
+              src={genre.image_background || noImage}
             />
             <Button
               fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
