@@ -1,4 +1,4 @@
-import axios,{CanceledError} from 'axios';
+import axios,{Axios, AxiosRequestConfig, CanceledError} from 'axios';
 
 export interface FetchResponse<T>{
     count: number;
@@ -6,11 +6,22 @@ export interface FetchResponse<T>{
 }
 
 
-export default axios.create({
+const axiosInstance =  axios.create({
     baseURL: 'https://api.rawg.io/api',
     params: {
         key: '07475b09680642a982c574f220fd7b17'
     }
 })
 
-export {CanceledError};
+class apiClient<T>{
+    endpoint: string;
+    constructor(endpoint: string){
+        this.endpoint = endpoint;
+    }
+
+    getAll = (config: AxiosRequestConfig)=>{
+        return axiosInstance.get<FetchResponse<T>>(this.endpoint,config).then(response => response.data);
+    }
+}
+
+export default apiClient;
