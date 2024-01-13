@@ -1,8 +1,9 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../../hooks/useGames";
 import GameCard from "../GameCard/GameCard";
 import GameCardSkeleton from "../GameCardSkeleton/GameCardSkeleton";
-import { GameQuery } from "../../App";
+import { GameQuery } from "../../pages/HomePage";
+import { Link } from "react-router-dom";
 
 interface Props {
   gameQuery: GameQuery;
@@ -23,7 +24,16 @@ const GameGrid = ({ gameQuery }: Props) => {
       {isLoading &&
         skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
       {data?.results.map((game) => (
-        <GameCard key={game.id} game={game} />
+        <Link to={`/games/${game.slug}`}>
+          <Box
+            _hover={{
+              transform: "scale(1.03)",
+              transition: "transform .15s ease-in",
+            }}
+          >
+            <GameCard key={game.id} game={game} />
+          </Box>
+        </Link>
       ))}
     </SimpleGrid>
   );
